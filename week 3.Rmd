@@ -1,15 +1,19 @@
-presentation
-========================================================
-author: Alma Zhantleuova
-date: 11/21/2019
-autosize: true
+---
+title: "R Markdown Presentation & Plotly"
+author: "Alma Zhantleuova"
+date: "11/21/2019"
+output: ioslides_presentation
+---
 
-Instructions:
-========================================================
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Instructions:
 
 Create a web page presentation using R Markdown that features a plot created with Plotly. Host your webpage on either GitHub Pages, RPubs, or NeoCities. Your webpage must contain the date that you created the document, and it must contain a plot created with Plotly. 
 
-```{r, echo=FALSE}
+```{r, include = FALSE}
 # Loading
 library("readxl")
 library("ggplot2")
@@ -18,15 +22,14 @@ library("plotly")
 my_data <- read_excel("1.xls")
 head(my_data)
 x <- seq(as.Date("2019/1/1"), as.Date("2019/11/21"), "days")
+y <- my_data$USD
 ```
 
-Exchange rate of kzt to usd in 2019
-========================================================
+## Exchange rate of kzt to usd in 2019
 
 Here is the daily fluctuations of the exchange rate of the national currency of Kazakhstan:
 
 ```{r, echo=FALSE}
-summary(my_data)
-p <- plot_ly(data = my_data, y = ~exchangerate, x = ~x, type = "scatter", mode = "lines")
+p <- plot_ly(data = my_data, y = ~y, x = ~x, type = "scatter", mode = "lines")
 p
 ```
